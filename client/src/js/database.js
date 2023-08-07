@@ -1,7 +1,7 @@
 import { openDB } from 'idb';
 
 const initdb = async () =>
-  openDB('jate', 3, {
+  openDB('jate', 4, {
     upgrade(db) {
       if (db.objectStoreNames.contains('jate')) {
         console.log('jate database already exists');
@@ -13,7 +13,7 @@ const initdb = async () =>
   });
 
 export const putDb = async (content) => {
-  const jateDb = await openDB('jate', 3);
+  const jateDb = await openDB('jate', 4);
   const tx = jateDb.transaction('jate', 'readwrite');
   const store = tx.objectStore('jate');
   const request = store.put({ value: content});
@@ -22,7 +22,7 @@ export const putDb = async (content) => {
 }
 
 export const getDb = async () => {
-  const jateDb = await openDB('jate', 3);
+  const jateDb = await openDB('jate', 4);
   const tx = jateDb.transaction('jate', 'readonly');
   const store = tx.objectStore('jate');
   const request = store.getAll();
